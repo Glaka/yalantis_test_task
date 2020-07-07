@@ -1,0 +1,16 @@
+{
+    "images": {
+        "1231241": {
+            "image": "image",
+            "text": "text1231",
+            "position": "left",
+            "color": "#817"
+        },
+        "12312422221": {
+            "image": "image",
+            "text": "textasdas",
+            "position": "center",
+            "color": "#444"
+        }
+    }
+}
