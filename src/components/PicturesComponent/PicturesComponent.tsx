@@ -1,6 +1,17 @@
 import * as React from 'react';
 import { Picture } from './Picture';
-export const PicturesComponent = ({ pictures, isLoading }: any) => {
+
+type Props = {
+    pictures: any;
+    isLoading: boolean;
+    uploadPicture: (event: any) => void;
+};
+
+export const PicturesComponent = ({
+    pictures,
+    isLoading,
+    uploadPicture,
+}: Props) => {
     return (
         <div className="box">
             {isLoading ? (
@@ -8,9 +19,15 @@ export const PicturesComponent = ({ pictures, isLoading }: any) => {
             ) : (
                 <>
                     <h2>grid section</h2>
-                    <button>add new </button>
+                    <div>
+                        <input
+                            type="file"
+                            name=""
+                            id=""
+                            onChange={(event) => uploadPicture(event)}
+                        />
+                    </div>
                     {Object.keys(pictures).map((picture) => {
-                        console.log(picture);
                         return (
                             <Picture
                                 key={picture}

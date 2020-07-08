@@ -1,7 +1,5 @@
 import { pictureActions } from './actionTypes';
 export const fetchPictures = (data: any) => {
-    console.log('fetchPictures', data);
-
     return {
         type: pictureActions.FETCH_PICTURES,
         data
@@ -9,33 +7,34 @@ export const fetchPictures = (data: any) => {
 }
 
 export const addNewPicture = () => {
-    console.log('addNewPicture');
-
     return {
         type: 'ACTION_NAME'
     }
 }
 
-export const editPicture = () => {
-    console.log('editPicture');
-
+export const editPicture = (data: any) => {
     return {
-        type: 'ACTION_NAME'
+        type: pictureActions.EDIT_PICTURE,
+        data
     }
 }
 
-export const savePicture = () => {
-    console.log('savePicture');
-
+export const savePictureState = (data: any) => {
     return {
-        type: 'ACTION_NAME'
+        type: pictureActions.SAVE_PICTURE,
+        data
     }
 }
 
-export const removePicture = () => {
-    console.log('removePicture');
-
+export const clearSelected = () => {
     return {
-        type: 'ACTION_NAME'
+        type: pictureActions.CLEAR_SELECTED
+    }
+}
+
+export const removePicture = (id: string) => {
+    return {
+        type: pictureActions.REMOVE_PICTURE,
+        id
     }
 }

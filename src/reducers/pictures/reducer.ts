@@ -2,6 +2,7 @@ import { pictureActions } from "./actionTypes";
 
 // const initialState: any = {};
 type Ipicture = {
+    id: string;
     image: string;
     text: string;
     position: 'bottom' | 'top' | 'left' | 'right';
@@ -9,19 +10,12 @@ type Ipicture = {
 }
 
 type picturesState = {
-    selectedPicture: Ipicture | null;
     pictures: { [name: string]: Ipicture };
+    selectedPicture: Ipicture | null;
 }
 
-const initialState: any = {
-    pictures: {
-        // "124512": {
-        //     "image": "image",
-        //     "text": "tooltip_text",
-        //     "position": "tooltip_position",
-        //     "color": "tooltip_color"
-        // }
-    },
+const initialState: picturesState = {
+    pictures: {},
     selectedPicture: null
 };
 
@@ -34,6 +28,17 @@ const pictureReducer = (
     switch (action.type) {
         case pictureActions.FETCH_PICTURES:
             return { ...state, pictures: action.data }
+        case pictureActions.EDIT_PICTURE:
+            return { ...state, selectedPicture: action.data }
+        case pictureActions.REMOVE_PICTURE:
+            const prevState = { ...state.pictures };
+            delete prevState[action.id]
+            return { ...state, pictures: prevState }
+        case pictureActions.SAVE_PICTURE:
+            const newPic = { [action.data.id]: action.data }
+            return { ...state, pictures: { ...state.pictures, ...newPic } }
+        case pictureActions.CLEAR_SELECTED:
+            return { ...state, selectedPicture: null }
         default:
             return state
     }
