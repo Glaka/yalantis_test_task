@@ -4,35 +4,59 @@ type Props = {
     deletePicture: any;
     savePicture: any;
     selectedPic: any;
+    handleChange: any;
 };
 
 export const PicturesEditComponent = ({
     deletePicture,
     savePicture,
     selectedPic,
+    handleChange,
 }: Props) => {
-    console.log('render');
-    // console.log(selectedPic);
-    let storedImg = localStorage.getItem('curr-img') || selectedPic.image;
-
     return (
-        <div className="box">
+        <div>
             {selectedPic ? (
                 <div>
                     <h2>Edit image</h2>
-                    {/* <p>{localStorage.getItem('curr-img')} </p> */}
-                    <img src={storedImg} alt="." />
-                    {/* <img src={selectedPic.image} alt="." /> */}
-                    <p>image itself</p>
-                    <button type="button">change image</button>
+                    <img src={selectedPic.image} width="100" alt="." />
+                    <input
+                        type="file"
+                        name=""
+                        data-type="image"
+                        onChange={(event) => handleChange(event)}
+                    />
 
-                    <p>change tooltip</p>
-                    <p>{selectedPic.text}</p>
-                    <p>change tooltip color</p>
-                    <p>{selectedPic.color}</p>
-                    <p>change tooltip position</p>
-                    <p>{selectedPic.position}</p>
-                    <p>{selectedPic.id} - id </p>
+                    <div>
+                        <p>change tooltip</p>
+                        <input
+                            onChange={(event) => handleChange(event)}
+                            type="text"
+                            data-type="text"
+                            value={selectedPic.text}
+                        />
+                    </div>
+                    <div>
+                        <p>change color # code </p>
+                        <input
+                            onChange={(event) => handleChange(event)}
+                            type="text"
+                            data-type="color"
+                            value={selectedPic.color}
+                        />
+                    </div>
+                    <div>
+                        <p>change position</p>
+                        <select
+                            onChange={(event) => handleChange(event)}
+                            value={selectedPic.position}
+                            data-type="position"
+                        >
+                            <option value="left">left</option>
+                            <option value="right">right</option>
+                            <option value="top">top</option>
+                            <option value="bottom">bottom</option>
+                        </select>
+                    </div>
 
                     <button
                         type="button"

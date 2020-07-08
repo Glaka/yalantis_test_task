@@ -39,6 +39,13 @@ const pictureReducer = (
             return { ...state, pictures: { ...state.pictures, ...newPic } }
         case pictureActions.CLEAR_SELECTED:
             return { ...state, selectedPicture: null }
+        case pictureActions.UPDATE_SELECTED:
+            return {
+                ...state, selectedPicture: {
+                    ...state.selectedPicture,
+                    [action.eventType]: action.data
+                }
+            }
         default:
             return state
     }

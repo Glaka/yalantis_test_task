@@ -13,17 +13,19 @@ export const PicturesComponent = ({
     uploadPicture,
 }: Props) => {
     return (
-        <div className="box">
+        <div>
             {isLoading ? (
                 'is loading'
             ) : (
                 <>
                     <h2>grid section</h2>
                     <div>
+                        <label htmlFor="upload_new_picture">+</label>
                         <input
                             type="file"
                             name=""
-                            id=""
+                            style={{ opacity: 0 }}
+                            id="upload_new_picture"
                             onChange={(event) => uploadPicture(event)}
                         />
                     </div>

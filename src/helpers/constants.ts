@@ -3,3 +3,4 @@ export const DEFAULT_PICTURE_VALUES = {
     color: '#fff',
     position: 'left'
 }
+export const PICTURES_URL = 'http://localhost:3004/images';

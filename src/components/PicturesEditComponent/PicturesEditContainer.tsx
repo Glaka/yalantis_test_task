@@ -5,10 +5,27 @@ import {
     removePicture,
     clearSelected,
     savePictureState,
+    updateSelectedState,
 } from '../../reducers/pictures/actions';
+import { getBase64Image } from '../../helpers/utils';
 
 export const PicturesEditContainer: React.FunctionComponent = () => {
     const dispatch = useDispatch();
+    const selectedPic = useSelector(
+        (state: any) => state.pictureReducer.selectedPicture
+    );
+
+    const handleChange = (event: any) => {
+        const target = event.target;
+        const eventType = target.dataset.type;
+        const value = target.value;
+        if (eventType === 'image') {
+            return getBase64Image(event).then((imageInBase64) => {
+                dispatch(updateSelectedState(eventType, imageInBase64));
+            });
+        }
+        dispatch(updateSelectedState(eventType, value));
+    };
 
     const savePicture = (data: any) => {
         dispatch(savePictureState(data));
@@ -20,17 +37,12 @@ export const PicturesEditContainer: React.FunctionComponent = () => {
         dispatch(clearSelected());
     };
 
-    const selectedPic = useSelector(
-        (state: any) => state.pictureReducer.selectedPicture
-    );
-    // useEffect(() => {
-    // }, []);
-
     return (
         <PicturesEditComponent
             deletePicture={deletePicture}
             savePicture={savePicture}
             selectedPic={selectedPic}
+            handleChange={handleChange}
         />
     );
 };

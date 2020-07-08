@@ -6,12 +6,6 @@ export const fetchPictures = (data: any) => {
     }
 }
 
-export const addNewPicture = () => {
-    return {
-        type: 'ACTION_NAME'
-    }
-}
-
 export const editPicture = (data: any) => {
     return {
         type: pictureActions.EDIT_PICTURE,
@@ -36,5 +30,13 @@ export const removePicture = (id: string) => {
     return {
         type: pictureActions.REMOVE_PICTURE,
         id
+    }
+}
+
+export const updateSelectedState = (eventType: string, data: any) => {
+    return {
+        type: pictureActions.UPDATE_SELECTED,
+        eventType,
+        data
     }
 }
