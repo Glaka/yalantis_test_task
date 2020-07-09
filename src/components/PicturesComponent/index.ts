@@ -1,0 +1,1 @@
+export { default as PicturesComponent } from './PicturesContainer';
