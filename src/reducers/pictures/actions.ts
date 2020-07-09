@@ -1,12 +1,13 @@
+import { Ipictures, Ipicture } from './../../helpers/types';
 import { pictureActions } from './actionTypes';
-export const fetchPictures = (data: any) => {
+export const fetchPictures = (data: Ipictures) => {
     return {
         type: pictureActions.FETCH_PICTURES,
         data
     }
 }
 
-export const editPicture = (data: any) => {
+export const editPicture = (data: Ipicture) => {
     return {
         type: pictureActions.EDIT_PICTURE,
         data

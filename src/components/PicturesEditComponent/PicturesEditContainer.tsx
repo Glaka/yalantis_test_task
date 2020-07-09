@@ -8,11 +8,12 @@ import {
     updateSelectedState,
 } from '../../reducers/pictures/actions';
 import { getBase64Image } from '../../helpers/utils';
+import { Ipicture, AppState } from '../../helpers/types';
 
 export const PicturesEditContainer: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     const selectedPic = useSelector(
-        (state: any) => state.pictureReducer.selectedPicture
+        (state: AppState) => state.pictureReducer.selectedPicture
     );
 
     const handleChange = (event: any) => {
@@ -27,7 +28,7 @@ export const PicturesEditContainer: React.FunctionComponent = () => {
         dispatch(updateSelectedState(eventType, value));
     };
 
-    const savePicture = (data: any) => {
+    const savePicture = (data: Ipicture) => {
         dispatch(savePictureState(data));
         dispatch(clearSelected());
     };

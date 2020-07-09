@@ -1,0 +1,55 @@
+.pictures {
+    flex-grow: 1;
+    padding: 20px;
+    padding-right: $edit-width;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    .grid-item {
+        position: relative;
+        flex-basis: calc(33.333% - 10px);
+        margin: 5px;
+        box-sizing: border-box;
+        background-color: $bg;
+        overflow: hidden;
+        cursor: pointer;
+        &:hover .tooltip {
+            opacity: 1;
+        }
+        .grid-item_upload {
+            // position: absolute;
+            color: $color;
+            cursor: pointer;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+        }
+    }
+    .grid-item::before {
+        content: '';
+        display: block;
+        padding-top: 100%;
+    }
+
+    .grid-item .grid-item_content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .tooltip {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+}

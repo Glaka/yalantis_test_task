@@ -5,8 +5,10 @@ import { PicturesEditComponent } from '../PicturesEditComponent/';
 const Root: React.FC = () => {
     return (
         <>
-            <PicturesComponent />
-            <PicturesEditComponent />
+            <main>
+                <PicturesComponent />
+                <PicturesEditComponent />
+            </main>
         </>
     );
 };

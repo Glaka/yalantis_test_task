@@ -1,25 +1,11 @@
-import { pictureActions } from "./actionTypes";
+import { pictureActions, actionTypes } from "./actionTypes";
+import { picturesState } from "../../helpers/types";
 
-// const initialState: any = {};
-type Ipicture = {
-    id: string;
-    image: string;
-    text: string;
-    position: 'bottom' | 'top' | 'left' | 'right';
-    color: string
-}
-
-type picturesState = {
-    pictures: { [name: string]: Ipicture };
-    selectedPicture: Ipicture | null;
-}
 
 const initialState: picturesState = {
     pictures: {},
     selectedPicture: null
 };
-
-type actionTypes = any
 
 const pictureReducer = (
     state: picturesState = initialState,

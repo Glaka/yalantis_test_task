@@ -3,13 +3,20 @@ import { PicturesComponent } from './PicturesComponent';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
-import { fetchPictures, editPicture } from '../../reducers/pictures/actions';
+import {
+    fetchPictures,
+    editPicture,
+    clearSelected,
+} from '../../reducers/pictures/actions';
 import { getBase64Image } from '../../helpers/utils';
 import { DEFAULT_PICTURE_VALUES, PICTURES_URL } from '../../helpers/constants';
+import { AppState } from '../../helpers/types';
 
 export const PicturesContainer: React.FC = () => {
     const dispatch = useDispatch();
-    const pictures = useSelector((state: any) => state.pictureReducer.pictures);
+    const pictures = useSelector(
+        (state: AppState) => state.pictureReducer.pictures
+    );
     const [isLoading, setLoading] = useState(true);
 
     const getPictures = React.useCallback(async () => {
@@ -22,14 +29,12 @@ export const PicturesContainer: React.FC = () => {
     }, [dispatch]);
 
     const createNewPictureState = (base64: string | unknown) => {
+        if (base64 === false) return dispatch(clearSelected());
         const newPicture = {
             ...DEFAULT_PICTURE_VALUES,
-            id: new Date().getTime(),
+            id: `${new Date().getTime()}`,
             image: base64,
         };
-        // localStorage.setItem('curr-img', `${base64}`);
-        console.log(base64);
-        console.log(newPicture);
         dispatch(editPicture(newPicture));
     };
 
@@ -41,14 +46,9 @@ export const PicturesContainer: React.FC = () => {
 
     useEffect(() => {
         if (isLoading) return;
-        console.log('pictures changed & push to server');
-        Axios.post(PICTURES_URL, pictures)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        Axios.post(PICTURES_URL, pictures).catch(function (error) {
+            console.log(error);
+        });
     }, [isLoading, pictures]);
 
     useEffect(() => {

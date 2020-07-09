@@ -8,7 +8,6 @@ export const getBase64Image = async (event: any) => {
     let canvas = document.createElement('canvas');
     let picQuality = .8
     let img = new Image();
-    // let base64;
     img.src = URL.createObjectURL(file);
     let promise = new Promise(function (resolve) {
         img.onload = () => {
@@ -20,10 +19,35 @@ export const getBase64Image = async (event: any) => {
             resolve(dataURL.replace(/^data:image\/(png|jpg);base64,/, ''));
         };
     });
-    // await promise.then((result) => {
-    //     base64 = result
-    // }).catch((err) => {
-    //     console.error(err);
-    // });
     return promise
+};
+
+export const getTooltipPos = (pos: string) => {
+    switch (pos) {
+        case 'right':
+            return {
+                right: '0',
+                top: '50%',
+                transform: 'translate(0,-50%)',
+            };
+        case 'top':
+            return {
+                left: '50%',
+                top: '0',
+                transform: 'translate(-50%,0)',
+            };
+        case 'bottom':
+            return {
+                left: '50%',
+                bottom: '0',
+                transform: 'translate(-50%,0)',
+            };
+
+        default:
+            return {
+                left: '0',
+                top: '50%',
+                transform: 'translate(0,-50%)',
+            };
+    }
 };
