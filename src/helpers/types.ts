@@ -6,8 +6,6 @@ export type Ipicture = {
     color: string
 }
 
-// export type ISelectedpicture = Ipicture
-
 export type Ipictures = { [name: string]: Ipicture }
 
 export type picturesState = {
