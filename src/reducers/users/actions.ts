@@ -1,9 +1,13 @@
 import { userActions } from './actionTypes';
 
-const logout = () => {
+export const logout = () => {
+    console.log('logout');
     return {
         type: userActions.LOGOUT
     }
 }
-
-export default logout
+export const login = () => {
+    return {
+        type: userActions.LOGIN
+    }
+}
