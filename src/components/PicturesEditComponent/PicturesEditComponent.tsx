@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { getTooltipPos } from '../../helpers/utils';
+import styled from 'styled-components';
 
 type Props = {
     deletePicture: (id: string) => void;
@@ -18,6 +19,23 @@ export const PicturesEditComponent = ({
         backgroundColor: selectedPic.color,
         ...getTooltipPos(selectedPic.position),
     };
+
+    const Button = styled.button`
+        background-color: #ff6300;
+        border: none;
+        color: white;
+        padding: 10px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        text-transform: uppercase;
+        box-sizing: border-box;
+    `;
 
     return (
         <div className="pictures-edit">
@@ -39,16 +57,21 @@ export const PicturesEditComponent = ({
                                     {selectedPic.text}
                                 </div>
                             </div>
-                            <label className="button" htmlFor="edit_image_src">
-                                EDIT IMAGE
-                            </label>
-                            <input
-                                className="input-hidden"
-                                id="edit_image_src"
-                                type="file"
-                                data-type="image"
-                                onChange={(event) => handleChange(event)}
-                            />
+                            <div>
+                                <label
+                                    className="button"
+                                    htmlFor="edit_image_src"
+                                >
+                                    EDIT IMAGE
+                                </label>
+                                <input
+                                    className="input-hidden"
+                                    id="edit_image_src"
+                                    type="file"
+                                    data-type="image"
+                                    onChange={(event) => handleChange(event)}
+                                />
+                            </div>
                         </div>
 
                         <div className="form-group">
@@ -85,20 +108,18 @@ export const PicturesEditComponent = ({
                                 <option value="bottom">bottom</option>
                             </select>
                         </div>
-                        <button
-                            className="button"
+                        <Button
                             type="button"
                             onClick={() => savePicture(selectedPic)}
                         >
                             save
-                        </button>
-                        <button
-                            className="button"
+                        </Button>
+                        <Button
                             type="button"
                             onClick={() => deletePicture(selectedPic.id)}
                         >
                             delete
-                        </button>
+                        </Button>
                     </div>
                 ) : (
                     <p>No selected picture to edit</p>

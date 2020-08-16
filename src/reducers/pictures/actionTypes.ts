@@ -6,7 +6,6 @@ export enum pictureActions {
     REMOVE_PICTURE = 'REMOVE_PICTURE',
     CLEAR_SELECTED = 'CLEAR_SELECTED',
     UPDATE_SELECTED = 'UPDATE_SELECTED',
-
 }
 
 interface fetchPictures {

@@ -43,14 +43,12 @@ export const PicturesComponent = ({
                                 />
                             </div>
                         </div>
-                        {Object.keys(pictures).map((picture) => {
-                            return (
-                                <Picture
-                                    key={picture}
-                                    picture={pictures[picture]}
-                                />
-                            );
-                        })}
+                        {Object.keys(pictures).map((picture) => (
+                            <Picture
+                                key={picture}
+                                picture={pictures[picture]}
+                            />
+                        ))}
                     </>
                 )}
             </div>

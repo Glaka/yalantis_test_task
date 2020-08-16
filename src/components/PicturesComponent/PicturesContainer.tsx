@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { PicturesComponent } from './PicturesComponent';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import Axios from 'axios';
 import {
     fetchPictures,
@@ -25,7 +25,9 @@ export const PicturesContainer: React.FC = () => {
                 dispatch(fetchPictures(response.data));
                 setLoading(false);
             })
-            .catch((err) => console.error(err));
+            .catch((err) => {
+                console.error(err);
+            });
     }, [dispatch]);
 
     const createNewPictureState = (base64: string | unknown) => {
@@ -56,11 +58,18 @@ export const PicturesContainer: React.FC = () => {
     }, [getPictures]);
 
     return (
-        <PicturesComponent
-            pictures={pictures}
-            isLoading={isLoading}
-            uploadPicture={uploadPicture}
-        />
+        <Suspense fallback={'loaddding'}>
+            <PicturesComponent
+                pictures={pictures}
+                isLoading={isLoading}
+                uploadPicture={uploadPicture}
+            />
+        </Suspense>
+        // <PicturesComponent
+        //     pictures={pictures}
+        //     isLoading={isLoading}
+        //     uploadPicture={uploadPicture}
+        // />
     );
 };
 
